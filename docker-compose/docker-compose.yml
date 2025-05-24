@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  blog-llm-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434/api/generate
+    networks:
+      - blog-llm-network
+
+networks:
+  blog-llm-network:
+    driver: bridge
